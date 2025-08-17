@@ -6,6 +6,8 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,4 +34,55 @@ public class Box {
 
     @OneToMany(mappedBy = "box", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Item> items = new ArrayList<>();
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public @Size(max = 20, message = "txref must be at most 20 characters") String getTxref() {
+        return txref;
+    }
+
+    public void setTxref(@Size(max = 20, message = "txref must be at most 20 characters") String txref) {
+        this.txref = txref;
+    }
+
+    @Max(value = 500, message = "weightLimit must be at most 500")
+    public double getWeightLimit() {
+        return weightLimit;
+    }
+
+    public void setWeightLimit(@Max(value = 500, message = "weightLimit must be at most 500") double weightLimit) {
+        this.weightLimit = weightLimit;
+    }
+
+    @Min(value = 0, message = "batteryCapacity must be at least 0")
+    @Max(value = 100, message = "batteryCapacity must be at most 100")
+    public int getBatteryCapacity() {
+        return batteryCapacity;
+    }
+
+    public void setBatteryCapacity(@Min(value = 0, message = "batteryCapacity must be at least 0") @Max(value = 100, message = "batteryCapacity must be at most 100") int batteryCapacity) {
+        this.batteryCapacity = batteryCapacity;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
 }
