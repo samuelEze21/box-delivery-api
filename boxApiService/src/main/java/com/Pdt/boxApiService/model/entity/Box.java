@@ -18,7 +18,7 @@ public class Box {
     @Size(max = 20, message = "txref must be at most 20 characters")
     private String txref;
 
-    @Max(value = 500, message = "weightLimit must be at most 500")
+    @Max(value = 500, message = "weightLimit must be at most 500g")
     private double weightLimit;
 
     @Min(value = 0, message = "batteryCapacity must be at least 0")
